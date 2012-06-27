@@ -5,19 +5,19 @@ import java.math.BigDecimal;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
-import jfaerman.flyfloyd.service.CotacaoService;
+import jfaerman.flyfloyd.service.CotacaoServiceEJB;
 
 @Model
 public class HomeController {
 	@Inject
-	private CotacaoService cotSvc;
+	private CotacaoServiceEJB cotSvc;
 	private String origem;
 	private String destino;
 	private BigDecimal price;
 	
 	public void buscar(){
 		System.out.println(origem+" -> "+destino);
-		price = cotSvc.getQuote(origem, destino);
+		price = cotSvc.getQuote(origem, destino).getPrecoTotal();
 	}
 
 	public BigDecimal getPrice() {
